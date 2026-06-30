@@ -987,10 +987,10 @@ function render(k) {
 
   // INJEÇÃO DO PAINEL DE INTELIGÊNCIA ARTIFICIAL
   h += `<div class="ai-consultor-card">
-          <h3 style="margin-top:0; color:var(--azul-escuro); font-size:16px; display:flex; align-items:center; gap:8px;">🤖 Consultor de Bolso IA — Contorno de Objeções</h3>
+          <h3 style="margin-top:0; color:var(--azul-escuro); font-size:16px; display:flex; align-items:center; gap:8px;">💬 Guia de Respostas — Contorno de Objeções</h3>
           <p style="font-size: 13px; color: var(--cinza-texto); margin-bottom: 12px; margin-top: 5px;">O cliente apresentou alguma resistência sobre o orçamento de <b>${k}</b>? Digite a objeção abaixo para receber um script focado na linha Nexpro Iveco.</p>
           <textarea id="ai-objecao" class="ai-textarea" rows="2" placeholder="Ex: O cliente achou a peça cara e vai buscar uma recondicionada no mercado paralelo..."></textarea>
-          <button type="button" class="btn-copiar" id="btn-perguntar-ia" style="margin-top: 10px; background: var(--azul-escuro); color: white; border-color: var(--azul-escuro);">Consultar Inteligência Artificial</button>
+          <button type="button" class="btn-copiar" id="btn-perguntar-ia" style="margin-top: 10px; background: var(--azul-escuro); color: white; border-color: var(--azul-escuro);">Ver Sugestão de Resposta</button>
           <div id="ai-resposta" class="ai-resposta-box"></div>
         </div>`;
 
@@ -1071,8 +1071,8 @@ const BASE_OBJECOES = [
     gatilhos: ['caro', 'car[oa]', 'preço', 'preco', 'desconto', 'barato', 'valor alto', 'mais barat'],
     variacoes: [
       (p, item) => `*O Risco Real:* Comparar apenas o preço de tabela ignora o custo total. Uma peça fora da linha Nexpro pode falhar antes do previsto, e como ${item ? `"${item.nome}"` : 'os itens correlatos'} dependem diretamente de ${p}, o cliente corre o risco de pagar duas vezes: uma pela peça barata e outra pela parada do veículo.\n\n*Script de Venda:* "Entendo a preocupação com o orçamento. Mas olha, o preço da Nexpro já considera a vida útil homologada para uso comercial pesado — uma peça genérica pode custar 20% menos hoje, mas o retrabalho e o tempo parado custam muito mais. Vamos calcular juntos o custo por km rodado?"`,
-      (p, item) => `*O Risco Real:* O barato pode saber caro depois. ${item ? `${item.argumento}` : 'A peça correlata tem função estrutural no sistema'} — trocar por algo fora de linha pode comprometer a garantia de toda a montagem.\n\n*Script de Venda:* "Posso te mostrar uma forma de fechar isso dentro do seu orçamento: damos prioridade ao item Obrigatório agora e deixamos o Recomendado para a próxima revisão, sem comprometer a segurança imediata do veículo. Assim você não perde o prazo nem a qualidade."`,
-      (p, item) => `*O Risco Real:* Pneu, peça de freio ou suspensão fora de linha tendem a parecer "economia" no curto prazo, mas ${item ? item.risco.toLowerCase() : 'o desgaste prematuro'} acaba gerando uma nova parada em poucos meses — e aí o custo dobra.\n\n*Script de Venda:* "Vou te passar o comparativo: a diferença de preço entre a peça genuína e a paralela equivale a menos de um dia de veículo parado. Faz sentido proteger o investimento com a peça certa?"`
+      (p, item) => `*O Risco Real:* O barato pode sair caro depois. ${item ? `${item.argumento}` : 'A peça correlata tem função estrutural no sistema'} — trocar por algo fora de linha pode comprometer a garantia de toda a montagem.\n\n*Script de Venda:* "Posso te mostrar uma forma de fechar isso dentro do seu orçamento: damos prioridade ao item Obrigatório agora e deixamos o Recomendado para a próxima revisão, sem comprometer a segurança imediata do veículo. Assim você não perde o prazo nem a qualidade."`,
+      (p, item) => `*O Risco Real:* Pneu, peça de freio ou suspensão fora de linha tendem a parecer "economia" no curto prazo, mas o desgaste prematuro que isso gera${item ? ` (${item.risco.toLowerCase()})` : ''} acaba provocando uma nova parada em poucos meses — e aí o custo dobra.\n\n*Script de Venda:* "Vou te passar o comparativo: a diferença de preço entre a peça genuína e a paralela equivale a menos de um dia de veículo parado. Faz sentido proteger o investimento com a peça certa?"`
     ]
   },
   {
@@ -1088,7 +1088,7 @@ const BASE_OBJECOES = [
     gatilhos: ['tempo', 'pressa', 'urgente', 'depois', 'rapido', 'rápido', 'demora', 'agora não', 'agora nao', 'sem tempo'],
     variacoes: [
       (p, item) => `*O Risco Real:* Rodar com pressa sem revisar os itens correlatos de ${p} é exatamente o cenário onde panes acontecem — geralmente na pior hora, no meio de uma rota.\n\n*Script de Venda:* "Eu entendo a pressa, e por isso mesmo recomendo resolver agora: a instalação completa leva muito menos tempo que uma parada não planejada na estrada. Posso adiantar a separação das peças enquanto você decide?"`,
-      (p, item) => `*O Risco Real:* ${item ? item.risco : 'A falha não verificada'} normalmente não dá aviso — o veículo simplesmente para, e aí o "tempo perdido" é muito maior do que os minutos da revisão completa hoje.\n\n*Script de Venda:* "Justamente porque o tempo é curto, vamos priorizar: faço a troca da peça principal agora e já deixo reservados os itens Obrigatórios para você não precisar voltar essa semana."`
+      (p, item) => `*O Risco Real:* Esse tipo de falha${item ? ` (${item.risco.toLowerCase()})` : ''} normalmente não dá aviso — o veículo simplesmente para, e aí o "tempo perdido" é muito maior do que os minutos da revisão completa hoje.\n\n*Script de Venda:* "Justamente porque o tempo é curto, vamos priorizar: faço a troca da peça principal agora e já deixo reservados os itens Obrigatórios para você não precisar voltar essa semana."`
     ]
   },
   {
@@ -1117,7 +1117,7 @@ const BASE_OBJECOES = [
 
 const FALLBACK_VARIACOES = [
   (p, item) => `*O Risco Real:* Ignorar os itens correlatos de ${p} ou optar por peças não homologadas da linha Nexpro pode comprometer a garantia e a segurança operacional do veículo.\n\n*Script de Venda:* "Reforço que o investimento na peça genuína evita uma parada não planejada, que custa muito mais que a diferença de preço. Posso te ajudar a priorizar o que é Obrigatório agora?"`,
-  (p, item) => `*O Risco Real:* ${item ? item.risco : 'A não substituição dos itens correlatos'} aumenta a chance de retrabalho e de uma nova visita do veículo ao balcão em pouco tempo.\n\n*Script de Venda:* "Vamos olhar juntos a prioridade comercial: o que é Obrigatório protege a segurança, o que é Recomendado estende a vida útil. Posso montar a proposta com essa divisão para facilitar sua decisão?"`
+  (p, item) => `*O Risco Real:* A não substituição dos itens correlatos${item ? ` — como em "${item.nome}" (${item.risco.toLowerCase()})` : ''} aumenta a chance de retrabalho e de uma nova visita do veículo ao balcão em pouco tempo.\n\n*Script de Venda:* "Vamos olhar juntos a prioridade comercial: o que é Obrigatório protege a segurança, o que é Recomendado estende a vida útil. Posso montar a proposta com essa divisão para facilitar sua decisão?"`
 ];
 
 function escolherCategoria(texto) {
@@ -1133,7 +1133,7 @@ function executarConsultaIA(pecaPrincipal, itensRelacionados, objecaoCliente) {
   const btnIA = document.getElementById('btn-perguntar-ia');
 
   respostaBox.style.display = 'block';
-  respostaBox.textContent = '🤖 Analisando a objeção e montando o script de contorno...';
+  respostaBox.textContent = '💬 Buscando o melhor script de contorno para essa objeção...';
   btnIA.disabled = true;
 
   // pequeno delay artificial só para dar sensação de processamento
