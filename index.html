@@ -487,11 +487,67 @@ h2 {
     .btn-copiar { width: 100%; justify-content: center; }
     #tela-login { margin: 40px auto; padding: 32px 22px; max-width: 92%; }
 }
+
+/* ========================================================================= */
+/* NOVOS ESTILOS - INCREMENTOS IA E WHATSAPP                                 */
+/* ========================================================================= */
+.btn-proposta-wpp {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 7px;
+    border: 1.5px solid #1E7E34;
+    background: #1E7E34;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s ease;
+    font-family: inherit;
+}
+.btn-proposta-wpp:hover { background: #155d25; border-color: #155d25; }
+.btn-proposta-wpp.sucesso { background: var(--azul-escuro); border-color: var(--azul-escuro); color: white; }
+
+.ai-consultor-card {
+    margin-top: 24px;
+    padding: 22px;
+    border: 1.5px solid var(--azul-medio);
+    border-radius: 8px;
+    background: var(--azul-claro);
+}
+.ai-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+.ai-textarea:focus {
+    outline: none;
+    border-color: var(--azul-medio);
+    box-shadow: 0 0 0 3px rgba(58, 134, 200, 0.15);
+}
+.ai-resposta-box {
+    margin-top: 16px;
+    padding: 14px;
+    background: white;
+    border-left: 4px solid var(--azul-escuro);
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1A202C;
+    display: none;
+    white-space: pre-line;
+}
 </style>
 </head>
 <body>
 
-<!-- Tela de Acesso -->
 <div id="tela-login">
   <div class="login-icone"><svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.3" r="0.9" fill="currentColor" stroke="none"/></svg></div>
   <h2>CVB Premium</h2>
@@ -504,7 +560,6 @@ h2 {
   <div id="login-erro"></div>
 </div>
 
-<!-- Conteúdo do App -->
 <div id="app-conteudo">
   <header>
     <div class="header-conteudo">
@@ -527,16 +582,13 @@ h2 {
     
     <div id="chips-categoria" class="chips"></div>
 
-    <!-- DASHBOARD DE IMAGENS SINCRONIZADO -->
     <div class="dashboard-imagens">
       
-      <!-- Painel Esquerdo: Imagem Antiga como Seletor Espacial -->
       <div class="painel-motor">
         <div class="painel-titulo"><svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/><line x1="12" y1="1.5" x2="12" y2="4.3"/><line x1="12" y1="19.7" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.3" y2="12"/><line x1="19.7" y1="12" x2="22.5" y2="12"/></svg> Mapeamento Técnico: Clique na Região Desejada</div>
         <div class="mapa-interativo-wrapper">
           <img class="img-mapa-base" src="image_25ed21.png.webp" alt="Diagrama de Referência Geral">
           
-          <!-- Hotspots sobrepostos vinculados às categorias -->
           <div class="zona-clique z-superior" data-cat="Motor — Parte Superior"><span class="zona-label"><svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="4"/><polyline points="5,11 12,4 19,11"/></svg> Superior</span></div>
           <div class="zona-inferior zona-clique z-inferior" data-cat="Motor — Parte Inferior"><span class="zona-label"><svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="20"/><polyline points="5,13 12,20 19,13"/></svg> Inferior</span></div>
           <div class="zona-clique z-transmissao" data-cat="Transmissão de Força"><span class="zona-label"><svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,3 18,6.5 18,13.5 12,17 6,13.5 6,6.5"/><circle cx="12" cy="10" r="2.6"/></svg> Transmissão</span></div>
@@ -547,7 +599,6 @@ h2 {
         </div>
       </div>
 
-      <!-- Painel Direito: Imagem Atual com Alinhamento por Máscara (Zoom) -->
       <div class="painel-motor">
         <div id="motor-titulo-dinamico" class="painel-titulo"><svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8V5a1 1 0 0 1 1-1h3"/><path d="M21 8V5a1 1 0 0 0-1-1h-3"/><path d="M3 16v3a1 1 0 0 0 1 1h3"/><path d="M21 16v3a1 1 0 0 1-1 1h-3"/></svg> <span id="motor-titulo-texto">Visão Geral Nexpro: Motor Completo</span></div>
         <div class="motor-sprite-wrapper">
@@ -561,7 +612,6 @@ h2 {
   </main>
 </div>
 
-<!-- ===================== ACESSO POR SENHA ===================== -->
 <script>
   const _SENHA_COD = "VHJlaW5hbWVudG8yMDI2"; 
 
@@ -596,7 +646,6 @@ h2 {
   window.addEventListener('DOMContentLoaded', () => inputSenha.focus());
 </script>
 
-<!-- ===================== LÓGICA E DADOS DA APLICAÇÃO ===================== -->
 <script>
 const verificacao = {
   "CABEÇOTE DE CILINDROS": ["Válvulas de admissão e escape", "Travas de válvulas", "Molas e retentores", "Conexões de válvulas", "Insertos de válvulas", "Assentos de válvula", "Guias de válvulas", "Conectores de combustível", "Filtros"],
@@ -623,7 +672,7 @@ const verificacao = {
 
 const categorias = {
   "Motor — Parte Superior": ["TAMPA DOS BALANCINS", "VÁLVULAS", "COMANDO DE VÁLVULAS", "SEGUIDORES"],
-  "Motor — Parte Inferior": ["BLOCO", "PISTÕES, CAMISAS, ANÉIS, BIELAS", "VIRABREQUIM", "CASQUILHO$ DE MANCAL", "CÁRTER", "AMORTECEDOR DE VIBRAÇÃO"],
+  "Motor — Parte Inferior": ["BLOCO", "PISTÕES, CAMISAS, ANÉIS, BIELAS", "VIRABREQUIM", "CASQUILHOS DE MANCAL", "CÁRTER", "AMORTECEDOR DE VIBRAÇÃO"],
   "Transmissão de Força": ["TAMPA DE ENGRENAGENS", "ENGRENAGENS", "TOMADA DE FORÇA"],
   "Arrefecimento": ["TERMOSTATO", "BOMBA DE ÁGUA", "CUBO DO VENTILADOR", "RESFRIADOR DE ÓLEO"],
   "Lubrificação": ["BOMBA DE ÓLEO"],
@@ -666,9 +715,9 @@ const dados = {
     { "nome": "Termostato", "prioridade": "Obrigatória", "argumento": "A troca de juntas e componentes da carcaça restabelece a perfeita circulação do líquido refrigerante, estancando o sistema contra bolhas de ar.", "risco": "Flutuação severa de temperatura e riscos imediatos de superaquecimento mecânico estrutural." }
   ],
   "INJETORES": [
-    { "nome": "Carcaças dos Balancins", "prioridade": "Recomendada", "argumento": "Assegura o alinhamento adequado de fixação e proteção mecânica dos chicotes e tubulações de alta pressão que cruzam a carcaça.", "risco": "Vibração excessiva nas lines de combustível e possibilidade de vazamentos internos de diesel no óleo." },
+    { "nome": "Carcaças dos Balancins", "prioridade": "Recomendada", "argumento": "Assegura o alinhamento adequado de fixação e proteção mecânica dos chicotes e tubulações de alta pressão que cruzam a carcaça.", "risco": "Vibração excessiva nas linhas de combustível e possibilidade de vazamentos internos de diesel no óleo." },
     { "nome": "Injetores", "prioridade": "Obrigatória", "argumento": "Kits de arruelas de cobre e vedação novos vedam a câmara de alta pressão contra o retorno de gases quentes nocivos ao injetor.", "risco": "Fuga de compressão do cilindro, perda de potência e colagem do bico por borra de carvão." },
-    { "nome": "Bomba Injetora", "prioridade": "Obrigatória", "argumento": "Uma linha equilibrada de pressão gerada pela bomba garante que os injetores operem com a atomização ideal de combustível diesel.", "risco": "Pulsação irregular de combustível, falhas de ignição na partida e funcionamento ásreo em marcha lenta." }
+    { "nome": "Bomba Injetora", "prioridade": "Obrigatória", "argumento": "Uma linha equilibrada de pressão gerada pela bomba garante que os injetores operem com a atomização ideal de combustível diesel.", "risco": "Pulsação irregular de combustível, falhas de ignição na partida e funcionamento áspero em marcha lenta." }
   ],
   "BLOCO": [
     { "nome": "Cabeçote de Cilindros", "prioridade": "Obrigatória", "argumento": "Item mandatório ao intervir no bloco para garantir planicidade de fechamento e estanqueidade total entre as galerias d'água e óleo.", "risco": "Queima da junta de cabeçote, infiltração de fluidos e empenamento estrutural do motor." },
@@ -685,7 +734,7 @@ const dados = {
     { "nome": "Acionamento Acessórios", "prioridade": "Obrigatória", "argumento": "Assegura o torque livre de componentes secundários sem impor esforços radiais desalinhados contra a frente do bloco.", "risco": "Desgaste nas buchas frontais e ruídos de desalinhamento de polias." },
     { "nome": "Filtro de Ar", "prioridade": "Obrigatória", "argumento": "Retém partículas que riscam severamente as paredes internas dos cilindros do bloco, agindo como barreira de segurança vital.", "risco": "Desgaste abrasivo acelerado das camisas (motor 'soprando' no respiro) e perda de compressão." },
     { "nome": "Compressor de Ar", "prioridade": "Obrigatória", "argumento": "Depende do alinhamento mecânico e do suprimento de óleo/água direto vindos das galerias de distribuição do bloco.", "risco": "Falha de lubrificação do compressor ou contaminação do sistema pneumático do veículo." },
-    { "nome": "Cubo do Ventilador", "prioridade": "Obrigatória", "argumento": "Mantém o fluxo de ar de arrefecimento frontal ideal para a dissipation de calor de todo o bloco fundido.", "risco": "Deficiência de resfriamento e elevação rápida da temperatura de trabalho do motor." },
+    { "nome": "Cubo do Ventilador", "prioridade": "Obrigatória", "argumento": "Mantém o fluxo de ar de arrefecimento frontal ideal para a dissipação de calor de todo o bloco fundido.", "risco": "Deficiência de resfriamento e elevação rápida da temperatura de trabalho do motor." },
     { "nome": "Resfriador de Óleo", "prioridade": "Obrigatória", "argumento": "Garante que o óleo lubrificante entre no bloco na temperatura ideal para formar o filme protetor estável nos mancais.", "risco": "Perda de viscosidade do óleo por calor excessivo e rápido desgaste de todos os componentes internos." },
     { "nome": "Bomba de Óleo", "prioridade": "Obrigatória", "argumento": "Componente vital que pressuriza o fluido por todas as microgalerias internas do bloco em direção aos componentes superiores.", "risco": "Ausência de lubrificação sob pressão, atrito seco de metal com metal e motor fundido em poucos minutos." },
     { "nome": "Bomba Injetora", "prioridade": "Obrigatória", "argumento": "Mantém o perfeito sincronismo de injeção casado com os tempos mecânicos das camisas e pistões do bloco.", "risco": "Ponto de injeção atrasado ou adiantado, causando queima ineficiente e batida de pino mecânica." },
@@ -703,7 +752,7 @@ const dados = {
   "COMANDO DE VÁLVULAS": [
     { "nome": "Bloco", "prioridade": "Obrigatória", "argumento": "Garante o perfeito alinhamento radial das buchas do comando dentro do alojamento estrutural usinado no bloco.", "risco": "Desalinhamento do comando, gerando flutuação de válvulas e danos ao bloco metálico." }
   ],
-  "CASQUILHO$ DE MANCAL": [
+  "CASQUILHOS DE MANCAL": [
     { "nome": "Bloco", "prioridade": "Obrigatória", "argumento": "Os casquilhos de mancal novos restabelecem a folga de óleo nominal correta com os alojamentos usinados do bloco.", "risco": "Giro de bronzina no alojamento do bloco, inutilizando a estrutura do motor por completo." },
     { "nome": "Virabrequim", "prioridade": "Obrigatória", "argumento": "Garantem o perfeito deslizamento hidrodinâmico do virabrequim sobre o filme de óleo, sem atrito direto metal-metal.", "risco": "Eixo virabrequim riscado, superaquecido e severamente travado (motor fundido)." }
   ],
@@ -726,7 +775,7 @@ const dados = {
     { "nome": "Bomba de Água", "prioridade": "Obrigatória", "argumento": "Substituir a bomba de água restabelece a pressão hidráulica nominal correta do sistema de arrefecimento do motor.", "risco": "Interrupção do fluxo de refrigeração, superaquecimento rápido e queima da junta de cabeçote." }
   ],
   "CUBO DO VENTILADOR": [
-    { "nome": "Cubo do Ventilador", "prioridade": "Obrigatória", "argumento": "Garante o livre e suave giro da hélice do radiador sem folgas nos rolamentos internos evitando oscilações axiais.", "risco": "Despriendimento da hélice em alta rotação, destruindo o radiador e mangueiras do sistema." }
+    { "nome": "Cubo do Ventilador", "prioridade": "Obrigatória", "argumento": "Garante o livre e suave giro da hélice do radiador sem folgas nos rolamentos internos evitando oscilações axiais.", "risco": "Desprendimento da hélice em alta rotação, destruindo o radiador e mangueiras do sistema." }
   ],
   "BOMBA DE ÓLEO": [
     { "nome": "Bomba de Óleo", "prioridade": "Obrigatória", "argumento": "A instalação de uma nova bomba original garante a vazão de fluido necessária para todos os componentes móveis.", "risco": "Falta de lubrificação severa nas partes altas do motor e motor fundido." }
@@ -771,7 +820,8 @@ const ICONS = {
   message: '<path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><line x1="7" y1="9.5" x2="17" y2="9.5"/><line x1="7" y1="13" x2="13" y2="13"/>',
   warning: '<path d="M12 3 2 20h20L12 3Z"/><line x1="12" y1="10" x2="12" y2="15"/><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"/>',
   clipboard: '<rect x="5" y="5" width="14" height="16" rx="1.5"/><rect x="9" y="3" width="6" height="3.5" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/>',
-  check: '<polyline points="4,12.5 9.5,18 20,5"/>'
+  check: '<polyline points="4,12.5 9.5,18 20,5"/>',
+  whatsapp: '<path d="M17.47 6.53a7.84 7.84 0 0 0-5.46-2.3c-4.27 0-7.75 3.48-7.75 7.75 0 1.36.35 2.69 1.02 3.86l-1.1 4 4.09-1.07a7.7 7.7 0 0 0 3.73.96h.01c4.27 0 7.75-3.48 7.75-7.75 0-2.07-.81-4.01-2.29-5.45zM12.02 18.15l-.01-.01a6.45 6.45 0 0 1-3.28-.9l-.24-.14-2.44.64.65-2.38-.15-.24a6.47 6.47 0 0 1-1-3.45c0-3.56 2.9-6.46 6.47-6.46 1.73 0 3.35.67 4.57 1.9 1.22 1.22 1.89 2.84 1.89 4.56 0 3.56-2.9 6.46-6.46 6.46z"/><path d="M15.56 13.3c-.19-.1-1.14-.56-1.32-.63-.18-.06-.31-.1-.44.1-.13.2-.5.63-.61.76-.11.13-.23.15-.42.06-.19-.1-.81-.3-1.55-.96-.57-.51-.95-1.14-1.06-1.33-.11-.2-.01-.3.08-.4.09-.09.19-.22.29-.33.09-.11.13-.19.19-.31.06-.13.03-.24-.01-.34-.05-.1-.44-1.06-.61-1.46-.16-.38-.32-.33-.44-.33h-.37c-.13 0-.34.05-.52.24-.18.19-.7.68-.7 1.66 0 .98.72 1.93.82 2.06.1.13 1.4 2.15 3.39 3.01.47.2.84.33 1.13.42.48.15.91.13 1.26.08.38-.06 1.14-.47 1.3-.92.16-.46.16-.85.11-.93-.05-.09-.18-.14-.37-.24z"/>'
 };
 function ic(nome) {
   return `<svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[nome] || ''}</svg>`;
@@ -780,7 +830,7 @@ function ic(nome) {
 const dl = document.getElementById('pecas');
 const chipsContainer = document.getElementById('chips-categoria');
 const imgSprite = document.getElementById('motor-sprite-img');
-const motorTituloDin = document.getElementById('motor-titulo-texto');
+const motorTituloDin = document.getElementById('motor-titulo-dinamico');
 let categoriaAtiva = null;
 
 function popularDatalist(filtroChaves) {
@@ -804,7 +854,6 @@ function atualizarSpriteEHotspots() {
   
   motorTituloDin.textContent = categoriaAtiva ? `Sistema em Destaque: ${categoriaAtiva}` : "Visão Geral Nexpro: Motor Completo";
 
-  // Sincroniza a classe ativa nos hotspots visuais do mapa esquerdo
   document.querySelectorAll('.zona-clique').forEach(zona => {
     if (zona.dataset.cat === categoriaAtiva) {
       zona.classList.add('ativa');
@@ -850,7 +899,6 @@ function executarFiltroCategoria() {
     ? `Digite ou selecione uma peça de "${categoriaAtiva}"... (Ctrl+K)`
     : 'Digite ou selecione a peça principal para abrir as correlações corretas... (Ctrl+K)';
   
-  // Quando uma categoria inteira for selecionada, renderiza um aviso interativo na tabela
   if(categoriaAtiva) {
     const icone = iconesCategorias[categoriaAtiva] || 'info';
     document.getElementById('out').innerHTML = `
@@ -864,7 +912,6 @@ function executarFiltroCategoria() {
   }
 }
 
-// Configuração dos eventos de clique diretamente no mapa de imagem esquerdo
 document.querySelectorAll('.zona-clique').forEach(zona => {
     zona.addEventListener('click', () => {
         categoriaAtiva = zona.dataset.cat;
@@ -900,17 +947,20 @@ function render(k) {
               <span class="indicador-item"><span class="dot dot-obrigatoria"></span>${totalObrigatoria} Obrigatória${totalObrigatoria === 1 ? '' : 's'}</span>
               <span class="indicador-item"><span class="dot dot-recomendada"></span>${totalRecomendada} Recomendada${totalRecomendada === 1 ? '' : 's'}</span>
             </div>
-            <button type="button" class="btn-copiar" id="btn-copiar-lista">${ic('clipboard')}Copiar lista de verificação</button>
+            <button type="button" class="btn-copiar" id="btn-copiar-lista">${ic('clipboard')} Copiar lista de verificação</button>
+            
+            <button type="button" class="btn-proposta-wpp" id="btn-gerar-proposta">${ic('whatsapp')} Gerar Proposta 1-Clique</button>
+
           </div>
         </div>`;
 
   h += `<table class='tbl'>
           <tr>
-            <th>${ic('link')}Outra Peça que Pode Ser Necessária</th>
-            <th>${ic('checklist')}Itens a Verificar</th>
-            <th>${ic('flag')}Prioridade Comercial</th>
-            <th>${ic('message')}Argumento Técnico Baseado em Valor (CVB)</th>
-            <th>${ic('warning')}Risco Operacional da Não Substituição</th>
+            <th>${ic('link')} Outra Peça que Pode Ser Necessária</th>
+            <th>${ic('checklist')} Itens a Verificar</th>
+            <th>${ic('flag')} Prioridade Comercial</th>
+            <th>${ic('message')} Argumento Técnico Baseado em Valor (CVB)</th>
+            <th>${ic('warning')} Risco Operacional da Não Substituição</th>
           </tr>`;
 
   itens.forEach(i => {
@@ -919,7 +969,7 @@ function render(k) {
     if (i.prioridade === 'Obrigatória') { badgeClass = 'badge-obrigatoria'; badgeIcone = 'alert'; }
 
     const verifItens = getVerificacao(i.nome);
-    let verifHtml = `<span class="no-verif">${ic('help')}Sem itens cadastrados</span>`;
+    let verifHtml = `<span class="no-verif">${ic('help')} Sem itens cadastrados</span>`;
     if (verifItens && verifItens.length) {
       verifHtml = '<ul class="verif-list">' + verifItens.map(v => `<li>${v}</li>`).join('') + '</ul>';
     }
@@ -927,15 +977,27 @@ function render(k) {
     h += `<tr>
             <td data-label="Peça"><b>${i.nome}</b></td>
             <td data-label="Itens a Verificar">${verifHtml}</td>
-            <td data-label="Prioridade"><span class='badge ${badgeClass}'>${ic(badgeIcone)}${i.prioridade}</span></td>
+            <td data-label="Prioridade"><span class='badge ${badgeClass}'>${ic(badgeIcone)} ${i.prioridade}</span></td>
             <td data-label="Argumento Técnico">${i.argumento}</td>
             <td data-label="Risco Operacional">${i.risco}</td>
           </tr>`;
   });
 
-  h += '</table><p class="rodape-nota"><i>Treinamento Comercial Advanced - Venda Consultiva da Linha de Peças de Reposição Nexpro. Conteúdo Técnico para Alta Performance e Segurança.</i></p>';
+  h += '</table>';
+
+  // INJEÇÃO DO PAINEL DE INTELIGÊNCIA ARTIFICIAL
+  h += `<div class="ai-consultor-card">
+          <h3 style="margin-top:0; color:var(--azul-escuro); font-size:16px; display:flex; align-items:center; gap:8px;">🤖 Consultor de Bolso IA — Contorno de Objeções</h3>
+          <p style="font-size: 13px; color: var(--cinza-texto); margin-bottom: 12px; margin-top: 5px;">O cliente apresentou alguma resistência sobre o orçamento de <b>${k}</b>? Digite a objeção abaixo para receber um script focado na linha Nexpro Iveco.</p>
+          <textarea id="ai-objecao" class="ai-textarea" rows="2" placeholder="Ex: O cliente achou a peça cara e vai buscar uma recondicionada no mercado paralelo..."></textarea>
+          <button type="button" class="btn-copiar" id="btn-perguntar-ia" style="margin-top: 10px; background: var(--azul-escuro); color: white; border-color: var(--azul-escuro);">Consultar Inteligência Artificial</button>
+          <div id="ai-resposta" class="ai-resposta-box"></div>
+        </div>`;
+
+  h += '<p class="rodape-nota"><i>Treinamento Comercial Advanced - Venda Consultiva da Linha de Peças de Reposição Nexpro. Conteúdo Técnico para Alta Performance e Segurança.</i></p>';
   document.getElementById('out').innerHTML = h;
 
+  // Lógica Botão Copiar Existente
   const btnCopiar = document.getElementById('btn-copiar-lista');
   btnCopiar.addEventListener('click', () => {
     let texto = `CVB - Peças correlatas e itens a verificar: ${k}\n\n`;
@@ -948,14 +1010,146 @@ function render(k) {
       texto += '\n';
     });
     navigator.clipboard.writeText(texto).then(() => {
-      btnCopiar.innerHTML = `${ic('check')}Lista copiada`;
+      btnCopiar.innerHTML = `${ic('check')} Lista copiada`;
       btnCopiar.classList.add('copiado');
       setTimeout(() => {
-        btnCopiar.innerHTML = `${ic('clipboard')}Copiar lista de verificação`;
+        btnCopiar.innerHTML = `${ic('clipboard')} Copiar lista de verificação`;
         btnCopiar.classList.remove('copiado');
       }, 2200);
     });
   });
+
+  // LÓGICA BOTÃO WHATSAPP
+  const btnProposta = document.getElementById('btn-gerar-proposta');
+  btnProposta.addEventListener('click', () => {
+    btnProposta.innerHTML = `Gerando...`;
+    setTimeout(() => {
+      let msgWpp = `*Proposta Técnica de Segurança - Linha Nexpro IVECO*\n\n`;
+      msgWpp += `Prezado cliente, para garantir a máxima performance e segurança do seu veículo comercial, elaboramos esta recomendação técnica focada exclusivamente em peças de reposição homologadas.\n\n`;
+      msgWpp += `*Sistema Principal Analisado:* ${k}\n\n`;
+      msgWpp += `*Itens Complementares de Revisão Recomendados:*\n`;
+
+      itens.forEach(i => {
+        msgWpp += `✅ *${i.nome}* (${i.prioridade})\n`;
+        msgWpp += `_${i.argumento}_\n\n`;
+      });
+
+      msgWpp += `Gostaria de aprovar este levantamento para darmos andamento à separação das peças?`;
+
+      const linkWhatsapp = `https://api.whatsapp.com/send?text=${encodeURIComponent(msgWpp)}`;
+      window.open(linkWhatsapp, '_blank');
+
+      btnProposta.innerHTML = `${ic('check')} Proposta Gerada`;
+      btnProposta.classList.add('sucesso');
+      setTimeout(() => {
+        btnProposta.innerHTML = `${ic('whatsapp')} Gerar Proposta 1-Clique`;
+        btnProposta.classList.remove('sucesso');
+      }, 3000);
+    }, 400); 
+  });
+
+  // LÓGICA DO CONSULTOR IA
+  const btnIA = document.getElementById('btn-perguntar-ia');
+  btnIA.addEventListener('click', () => {
+    const objecaoTexto = document.getElementById('ai-objecao').value.trim();
+    if (!objecaoTexto) {
+      alert("Por favor, digite a objeção ou dúvida do cliente antes de consultar a IA.");
+      return;
+    }
+    executarConsultaIA(k, itens, objecaoTexto);
+  });
+}
+
+// CONSULTOR DE BOLSO — GERADOR LOCAL DE CONTORNO DE OBJEÇÕES
+// 100% client-side, sem chave de API, sem chamadas externas.
+// Identifica a objeção por palavras-chave e monta um script combinando
+// templates de persuasão com os dados reais de risco/argumento da peça.
+
+const BASE_OBJECOES = [
+  {
+    chave: 'preco',
+    gatilhos: ['caro', 'car[oa]', 'preço', 'preco', 'desconto', 'barato', 'valor alto', 'mais barat'],
+    variacoes: [
+      (p, item) => `*O Risco Real:* Comparar apenas o preço de tabela ignora o custo total. Uma peça fora da linha Nexpro pode falhar antes do previsto, e como ${item ? `"${item.nome}"` : 'os itens correlatos'} dependem diretamente de ${p}, o cliente corre o risco de pagar duas vezes: uma pela peça barata e outra pela parada do veículo.\n\n*Script de Venda:* "Entendo a preocupação com o orçamento. Mas olha, o preço da Nexpro já considera a vida útil homologada para uso comercial pesado — uma peça genérica pode custar 20% menos hoje, mas o retrabalho e o tempo parado custam muito mais. Vamos calcular juntos o custo por km rodado?"`,
+      (p, item) => `*O Risco Real:* O barato pode saber caro depois. ${item ? `${item.argumento}` : 'A peça correlata tem função estrutural no sistema'} — trocar por algo fora de linha pode comprometer a garantia de toda a montagem.\n\n*Script de Venda:* "Posso te mostrar uma forma de fechar isso dentro do seu orçamento: damos prioridade ao item Obrigatório agora e deixamos o Recomendado para a próxima revisão, sem comprometer a segurança imediata do veículo. Assim você não perde o prazo nem a qualidade."`,
+      (p, item) => `*O Risco Real:* Pneu, peça de freio ou suspensão fora de linha tendem a parecer "economia" no curto prazo, mas ${item ? item.risco.toLowerCase() : 'o desgaste prematuro'} acaba gerando uma nova parada em poucos meses — e aí o custo dobra.\n\n*Script de Venda:* "Vou te passar o comparativo: a diferença de preço entre a peça genuína e a paralela equivale a menos de um dia de veículo parado. Faz sentido proteger o investimento com a peça certa?"`
+    ]
+  },
+  {
+    chave: 'orcamento',
+    gatilhos: ['orçamento', 'orcamento', 'não tenho dinheiro', 'nao tenho dinheiro', 'autoriza', 'aprovação', 'aprovacao', 'financeiro', 'verba', 'sem caixa'],
+    variacoes: [
+      (p, item) => `*O Risco Real:* Sem aprovação do orçamento agora, o item ${item ? `"${item.nome}"` : 'correlato'} fica pendente e o veículo roda com risco aumentado de pane — o que pode gerar uma despesa não planejada bem maior depois.\n\n*Script de Venda:* "Posso fracionar isso para você: fazemos agora os itens marcados como Obrigatórios, que são os de risco de segurança, e deixamos os Recomendados para a próxima manutenção programada. Assim cabe no orçamento atual sem deixar o veículo desprotegido."`,
+      (p, item) => `*O Risco Real:* Postergar a aprovação não elimina o problema, só transfere o risco para um momento sem planejamento — geralmente no meio de uma viagem ou rota comercial.\n\n*Script de Venda:* "Entendo que o orçamento precisa de aprovação. Vou te preparar um relatório com prioridade clara — obrigatório vs recomendado — para facilitar a aprovação interna. Posso enviar agora pelo WhatsApp para você levar à diretoria?"`
+    ]
+  },
+  {
+    chave: 'tempo',
+    gatilhos: ['tempo', 'pressa', 'urgente', 'depois', 'rapido', 'rápido', 'demora', 'agora não', 'agora nao', 'sem tempo'],
+    variacoes: [
+      (p, item) => `*O Risco Real:* Rodar com pressa sem revisar os itens correlatos de ${p} é exatamente o cenário onde panes acontecem — geralmente na pior hora, no meio de uma rota.\n\n*Script de Venda:* "Eu entendo a pressa, e por isso mesmo recomendo resolver agora: a instalação completa leva muito menos tempo que uma parada não planejada na estrada. Posso adiantar a separação das peças enquanto você decide?"`,
+      (p, item) => `*O Risco Real:* ${item ? item.risco : 'A falha não verificada'} normalmente não dá aviso — o veículo simplesmente para, e aí o "tempo perdido" é muito maior do que os minutos da revisão completa hoje.\n\n*Script de Venda:* "Justamente porque o tempo é curto, vamos priorizar: faço a troca da peça principal agora e já deixo reservados os itens Obrigatórios para você não precisar voltar essa semana."`
+    ]
+  },
+  {
+    chave: 'recondicionada',
+    gatilhos: ['recondicionada', 'recondicionado', 'usada', 'usado', 'seminova', 'paralelo', 'paralela', 'mercado paralelo', 'não original', 'nao original'],
+    variacoes: [
+      (p, item) => `*O Risco Real:* Peças recondicionadas ou de mercado paralelo não passam pelos mesmos critérios de fadiga e tolerância da linha Nexpro. ${item ? item.argumento : 'O ajuste fino do sistema'} fica comprometido, mesmo que visualmente pareça igual.\n\n*Script de Venda:* "Eu entendo a tentação do preço, mas uma peça recondicionada não tem rastreabilidade de uso anterior — você não sabe quantos km ou qual esforço ela já sofreu. Com a Nexpro original, você tem garantia de fábrica e previsibilidade total."`,
+      (p, item) => `*O Risco Real:* O maior problema da peça paralela não é a peça em si, é o efeito cascata: ${item ? `"${item.nome}"` : 'os itens correlatos'} podem não encaixar corretamente, gerando desgaste cruzado em outros componentes.\n\n*Script de Venda:* "Posso te mostrar a diferença na prática: separamos a peça original ao lado de uma similar para você ver a diferença de material e acabamento. Isso ajuda a justificar a escolha certa para a frota."`
+    ]
+  },
+  {
+    chave: 'confianca',
+    gatilhos: ['não conheço', 'nao conheco', 'nunca ouvi', 'confiança', 'confianca', 'garantia', 'marca desconhecida', 'qualidade'],
+    variacoes: [
+      (p, item) => `*O Risco Real:* A insegurança em relação à marca é compreensível, mas optar por algo "conhecido" sem ser homologado pode anular a garantia de ${p}.\n\n*Script de Venda:* "A Nexpro é a linha de reposição homologada pela própria Iveco — ou seja, segue exatamente a especificação de fábrica. Posso te mostrar a documentação técnica e a garantia para você levar mais segurança na decisão."`
+    ]
+  },
+  {
+    chave: 'pesquisar',
+    gatilhos: ['pesquisar', 'comparar', 'outro fornecedor', 'concorrente', 'vou ver em outro lugar', 'cotação', 'cotacao'],
+    variacoes: [
+      (p, item) => `*O Risco Real:* Comparar preços é saudável, mas comparações sem considerar o pacote completo de ${p} (peça + itens correlatos + garantia) costuma subestimar o custo real da concorrência.\n\n*Script de Venda:* "Faz todo sentido pesquisar. Só sugiro comparar o pacote completo: nossa proposta já inclui os itens Obrigatórios para a instalação correta. Posso te enviar agora por WhatsApp para facilitar a comparação?"`
+    ]
+  }
+];
+
+const FALLBACK_VARIACOES = [
+  (p, item) => `*O Risco Real:* Ignorar os itens correlatos de ${p} ou optar por peças não homologadas da linha Nexpro pode comprometer a garantia e a segurança operacional do veículo.\n\n*Script de Venda:* "Reforço que o investimento na peça genuína evita uma parada não planejada, que custa muito mais que a diferença de preço. Posso te ajudar a priorizar o que é Obrigatório agora?"`,
+  (p, item) => `*O Risco Real:* ${item ? item.risco : 'A não substituição dos itens correlatos'} aumenta a chance de retrabalho e de uma nova visita do veículo ao balcão em pouco tempo.\n\n*Script de Venda:* "Vamos olhar juntos a prioridade comercial: o que é Obrigatório protege a segurança, o que é Recomendado estende a vida útil. Posso montar a proposta com essa divisão para facilitar sua decisão?"`
+];
+
+function escolherCategoria(texto) {
+  const t = texto.toLowerCase();
+  for (const cat of BASE_OBJECOES) {
+    if (cat.gatilhos.some(g => new RegExp(g, 'i').test(t))) return cat;
+  }
+  return null;
+}
+
+function executarConsultaIA(pecaPrincipal, itensRelacionados, objecaoCliente) {
+  const respostaBox = document.getElementById('ai-resposta');
+  const btnIA = document.getElementById('btn-perguntar-ia');
+
+  respostaBox.style.display = 'block';
+  respostaBox.textContent = '🤖 Analisando a objeção e montando o script de contorno...';
+  btnIA.disabled = true;
+
+  // pequeno delay artificial só para dar sensação de processamento
+  setTimeout(() => {
+    const categoria = escolherCategoria(objecaoCliente);
+    const itemRef = itensRelacionados && itensRelacionados.length
+      ? itensRelacionados[Math.floor(Math.random() * itensRelacionados.length)]
+      : null;
+
+    const variacoes = categoria ? categoria.variacoes : FALLBACK_VARIACOES;
+    const gerador = variacoes[Math.floor(Math.random() * variacoes.length)];
+    const textoResposta = gerador(pecaPrincipal, itemRef);
+
+    respostaBox.textContent = textoResposta;
+    btnIA.disabled = false;
+  }, 350);
 }
 
 document.getElementById('busca').addEventListener('input', (e) => {
@@ -973,6 +1167,7 @@ document.getElementById('busca').addEventListener('input', (e) => {
     }
   }
 });
+
 </script>
 </body>
 </html>
